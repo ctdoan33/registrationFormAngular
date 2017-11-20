@@ -29,8 +29,8 @@
 			</tr>
 			<tr>
 				<td [ngClass]="{'label':true}"><label for="password_confirmation">*Password Confirmation:</label></td>
-				<td><input type="password" id="password_confirmation" name="password_confirmation" required minlength="16" [(ngModel)]="user.password_confirmation" #password_confirmation="ngModel"></td>
-				<td *ngIf="password_confirmation.invalid" [ngClass]="{'error':true}">Password Confirmation must match Password.</td>
+				<td><input type="password" id="password_confirmation" name="password_confirmation" required minlength="16" [(ngModel)]="user.password_confirmation"></td>
+				<td *ngIf="user.password!=user.password_confirmation" [ngClass]="{'error':true}">Password Confirmation must match Password.</td>
 			</tr>
 			<tr>
 				<td [ngClass]="{'label':true}"><label for="street_address">*Street Address:</label></td>
@@ -113,6 +113,6 @@
 				<td *ngIf="lucky.invalid" [ngClass]="{'error':true}">Choosing how you feel is required.</td>
 			</tr>
 		</tbody>
-		<input type="submit" [disabled]="formData.invalid"  [ngClass]="{'bordered':true, 'submit':true}" value="Register">
+		<input type="submit" [disabled]="formData.invalid || user.password!=user.password_confirmation"  [ngClass]="{'bordered':true, 'submit':true}" value="Register">
 	</table>
 </form>
